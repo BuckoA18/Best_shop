@@ -37,6 +37,7 @@ html {
 }
 
 .header {
+    width: 100vw;
     height: 7rem;
     box-shadow: 0px 3px 6px #00000029;
 
@@ -86,8 +87,52 @@ html {
 /* ---- HERO ---- */ 
 
 .hero {
+    width: 100vw;
+
+}
+
+.hero__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+   
+    
+
     
 }
+
+.hero__logo {
+    font: normal normal normal 4.9rem/5.7rem Raleway;
+    margin-top: 130px;
+    margin-bottom: 20px;
+}
+
+.hero__text {
+    font: normal normal normal 1.6rem/2.2rem var(--font-secondary) ;
+    margin-bottom: 38px;
+}
+
+.hero__btn {
+    padding: 22px 157px;
+    font: normal normal bold 1.6rem/2.2rem var(--font-secondary);
+
+    color: #FFFFFF;
+    background-color: var(--color-primary);
+
+    box-shadow: 5px 10px 14px #07ACE629;
+    border-radius: 40px;
+    border: none;
+} 
+
+.hero__bgn {
+    background-image: url(imgs/Background.png);
+    width: 100vw;
+    height: 594px;
+    background-position: center;
+}
+
 
 
 
