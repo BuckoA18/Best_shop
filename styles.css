@@ -552,5 +552,159 @@ body {
     font-weight: 700;
 }
 
+/* ---- Contact ----*/
 
 
+.contact__container {
+    margin-top: 179px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 114px;
+
+    font-family: var(--font-text);
+
+    margin-bottom: 60px;
+}
+
+.contact__info {
+    width: 350px;
+}
+
+.contact__form {
+    display: flex;
+    flex-direction: column;
+
+    max-width: 440px;
+}
+
+.info__title {
+    margin-bottom: 22px;
+
+    font-family: var(--font-title);
+}
+
+.info__description {
+    margin-bottom: 42px;
+}
+
+.info__details {
+    display: flex;
+    flex-direction: row;
+   
+    gap: 20px;
+}
+
+.details__item {
+    display: flex;
+    align-items: center;
+    
+    gap: 10px;
+
+    color: var(--font-color-secondary);
+    font-weight: 600;
+    
+}
+
+.form__label {
+    font-size: 0.688rem;
+
+    text-transform: uppercase;
+    color: var(--color-primary);
+    font-weight: bold;
+    letter-spacing: 3.28px;
+    line-height: 15px;
+
+    font-size: 0.688rem;
+}
+
+.form__input {
+    border: none;
+    border-bottom: 1px solid #95989A;
+    background-color: transparent;
+
+    line-height: 2.5rem;
+}
+
+.form__name {
+    margin-bottom: 47px;
+}
+
+.form__consent {
+    margin-top: 30px;
+}
+
+.form__checkbox {
+    display: block;
+    position: relative;
+    padding-left: 34px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 0.75rem;
+}
+
+.form__checkbox input {
+   position: absolute;
+   opacity: 0;
+   width: 0;
+   height: 0;
+   cursor: pointer;
+}
+
+.form__checkbox .checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: var(--bgn-secondary);
+    border: 1px solid #95989A;
+    border-radius: 4px;
+}
+
+.form__checkbox input:checked ~ .checkbox {
+    background-image: url(imgs/Checkmark.svg);
+    background-position: center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+.consent__text {
+    color: var(--font-color-tirtiary);
+}
+
+.form__btn {
+    align-self: flex-end;
+    font-size: 0.813rem;
+
+    padding: 20px 97px;
+    margin-top: 20px;
+    border-radius: 35px;
+
+    background-color: var(--color-primary);
+}
+
+.footer {
+    height: 89px;
+    box-shadow: 0px -5px 40px #00000029;
+}
+
+/* ---- Footer ----*/
+
+.footer__container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.logo__rights {
+    color: var(--font-color-secondary);
+}
+
+.footer__imgs {
+    display: flex;
+    gap: 20px;
+}
