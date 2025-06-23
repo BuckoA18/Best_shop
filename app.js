@@ -35,11 +35,11 @@ function Calculator() {
         terminal: 15
     }
 
-this.Update()
+this.init()
 
 }
 
-Calculator.prototype.Update = function(){
+Calculator.prototype.init = function(){
     this.form.addEventListener("input", () => {
         this.validate()
         this.updateAll()
@@ -74,23 +74,23 @@ Calculator.prototype.updateAll = function() {
     this.updateCheckbox("terminal", this.terminalChecked ? this.prices.terminal : 0);
      
 }
-//ziska value v inputu
+//input value
 Calculator.prototype.getValue = function(){
 
     this.productsQty = this.productsInput.value;
     this.productsValue = (this.productsQty * this.prices.products)
-    console.log(`product qty: ${this.productsQty} product value: ${this.productsValue}`);
+  //console.log(`product qty: ${this.productsQty} product value: ${this.productsValue}`);
 
     this.ordersQty = this.ordersInput.value;
     this.ordersValue = (this.ordersQty * this.prices.orders)
-    console.log(`orders qty: ${this.ordersQty} orders value: ${this.ordersValue}`);
+   //console.log(`orders qty: ${this.ordersQty} orders value: ${this.ordersValue}`);
 
     this.accountingChecked = this.accountingCheckbox.checked;
-    console.log(`accounting ${this.accountingChecked}`)
+   // console.log(`accounting ${this.accountingChecked}`)
     this.terminalChecked = this.terminalCheckbox.checked;
-    console.log(`terminal ${this.terminalChecked}`)
+   //console.log(`terminal ${this.terminalChecked}`)
 }
-//validuje input cisel, v pripade zaporneho cisla maze input
+//validation
 Calculator.prototype.validate = function() {
     if (this.productsQty < 0 || this.ordersQty < 0) {
         alert("Must be greater then 0");
@@ -112,12 +112,13 @@ Calculator.prototype.selectValue = function() {
             option.addEventListener("click", () => {
                 this.selectInput.textContent = option.textContent
                 this.selectedOption = option.textContent;
-                console.log(this.selectedOption);
+                //console.log(this.selectedOption);
                 this.updateAll();
             })
         })
 }
-//celkova suma
+
+//whole sum
 Calculator.prototype.totalSum = function() {
    this.result = this.productsValue + this.ordersValue;
    if(this.accountingChecked === true) {
@@ -130,12 +131,12 @@ Calculator.prototype.totalSum = function() {
     this.result += this.prices.packages.premium;
    }
 }
-
+//updates whole sum 
 Calculator.prototype.updateSum = function() {
     this.summaryTotal.classList.add("open")
     this.totalPrice.textContent = `$${this.result}`;    
 }
-
+//updates items but not checkboxes
 Calculator.prototype.updateItem = function(type, calc, price) {
     this.li = document.querySelector(`.list__item[data-id="${type}"]`);
     this.li.querySelector(".item__calc").textContent = calc;
@@ -146,7 +147,7 @@ Calculator.prototype.updateItem = function(type, calc, price) {
         this.li.classList.add("open")
     }
 }
-
+//updates checkboxes
 Calculator.prototype.updateCheckbox = function(type,  price) {
     this.li = document.querySelector(`.list__item[data-id="${type}"]`);
     this.li.querySelector(".item__price").textContent = price;
@@ -156,20 +157,6 @@ Calculator.prototype.updateCheckbox = function(type,  price) {
         this.li.classList.add("open")
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", function(){
     new Calculator();
