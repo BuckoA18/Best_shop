@@ -18,7 +18,9 @@ function Calculator() {
     //form
     this.form = document.querySelector("form");
 
-    this.totalPrice =document.getElementById("total-price");
+
+    this.totalPrice = document.querySelector(".total__price");
+    this.summaryTotal = document.querySelector(".summary__total")
 
 
     this.prices = {
@@ -36,28 +38,41 @@ function Calculator() {
 this.Update()
 
 }
-//ceka na jakykoli input ve form
+
 Calculator.prototype.Update = function(){
     this.form.addEventListener("input", () => {
         this.validate()
-        this.getValue()
-        this.totalSum()
-         console.log(this.result);
+        this.updateAll()
+        //console.log(this.result);
     })
+    this.selectValue()
+}
 
-    this.form.addEventListener("click", (event) => {
-        if(event.target === this.selectInput){
-            this.packageInput.classList.toggle("open");
-        }
-    })
-    this.dropdownOptions.forEach((option) => {
-            option.addEventListener("click", () => {
-                this.selectInput.textContent = option.textContent
-                this.selectedOption = option.dataset.value;
-                console.log(this.selectedOption);
-            
-            })
-        })
+Calculator.prototype.updateAll = function() {
+    this.getValue()
+    this.totalSum()
+    this.updateSum()
+
+    this.updateItem(
+        "products",
+         `${this.productsQty} * $${this.prices.products}`,
+        this.productsValue
+    )
+
+    this.updateItem(
+        "orders",
+        `${this.ordersQty} * $${this.prices.orders}`,
+        this.ordersValue
+    )
+
+    if (this.selectedOption) {
+        this.pgkPrice = this.prices.packages[this.selectedOption.toLocaleLowerCase()];
+        this.updateItem("package", this.selectedOption, this.pgkPrice)
+    }
+
+    this.updateCheckbox("accounting", this.accountingChecked ? this.prices.accountting : 0);
+    this.updateCheckbox("terminal", this.terminalChecked ? this.prices.terminal : 0);
+     
 }
 //ziska value v inputu
 Calculator.prototype.getValue = function(){
@@ -84,18 +99,77 @@ Calculator.prototype.validate = function() {
     }
 }
 
+//select dropdown value
+Calculator.prototype.selectValue = function() {
+    this.form.addEventListener("click", (event) => {
+        if(event.target === this.selectInput){
+            this.packageInput.classList.add("open");
+        } if (event.target !== this.selectInput) {
+            this.packageInput.classList.remove("open");
+        }
+    })
+    this.dropdownOptions.forEach((option) => {
+            option.addEventListener("click", () => {
+                this.selectInput.textContent = option.textContent
+                this.selectedOption = option.textContent;
+                console.log(this.selectedOption);
+                this.updateAll();
+            })
+        })
+}
+//celkova suma
 Calculator.prototype.totalSum = function() {
    this.result = this.productsValue + this.ordersValue;
    if(this.accountingChecked === true) {
     this.result += this.prices.accountting;
    } if (this.terminalChecked === true) {
     this.result += this.prices.terminal;
-   } if (this.selectedOption === "professional") {
+   } if (this.selectedOption === "Professional") {
     this.result += this.prices.packages.professional;
-   } if (this.selectedOption === "premium") {
+   } if (this.selectedOption === "Premium") {
     this.result += this.prices.packages.premium;
    }
 }
+
+Calculator.prototype.updateSum = function() {
+    this.summaryTotal.classList.add("open")
+    this.totalPrice.textContent = `$${this.result}`;    
+}
+
+Calculator.prototype.updateItem = function(type, calc, price) {
+    this.li = document.querySelector(`.list__item[data-id="${type}"]`);
+    this.li.querySelector(".item__calc").textContent = calc;
+    this.li.querySelector(".item__price").textContent = price;
+
+
+    if(price > 0 ) {
+        this.li.classList.add("open")
+    }
+}
+
+Calculator.prototype.updateCheckbox = function(type,  price) {
+    this.li = document.querySelector(`.list__item[data-id="${type}"]`);
+    this.li.querySelector(".item__price").textContent = price;
+
+
+    if(price > 0 ) {
+        this.li.classList.add("open")
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", function(){
     new Calculator();
