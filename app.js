@@ -41,8 +41,8 @@ this.init()
 
 Calculator.prototype.init = function(){
     this.form.addEventListener("input", () => {
-        this.validate()
-        this.updateAll()
+    this.updateAll()
+    this.validate()
         //console.log(this.result);
     })
     this.selectValue()
@@ -56,7 +56,7 @@ Calculator.prototype.updateAll = function() {
     this.updateItem(
         "products",
          `${this.productsQty} * $${this.prices.products}`,
-        this.productsValue
+         this.productsValue
     )
 
     this.updateItem(
@@ -145,7 +145,7 @@ Calculator.prototype.updateItem = function(type, calc, price) {
 
     if(price > 0 ) {
         this.li.classList.add("open")
-    }
+    } else this.li.classList.remove("open")
 }
 //updates checkboxes
 Calculator.prototype.updateCheckbox = function(type,  price) {
@@ -153,9 +153,9 @@ Calculator.prototype.updateCheckbox = function(type,  price) {
     this.li.querySelector(".item__price").textContent = price;
 
 
-    if(price > 0 ) {
+   if(price > 0 ) {
         this.li.classList.add("open")
-    }
+    } else this.li.classList.remove("open")
 }
 
 document.addEventListener("DOMContentLoaded", function(){
