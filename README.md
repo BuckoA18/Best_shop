@@ -24,4 +24,4 @@ Read the following guidelines before doing the exercises.
 
 ## BestShop Workshop
 
-This a ready-made - model version of the BestShop workshop.
+
